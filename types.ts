@@ -12,7 +12,8 @@ export interface Film {
   sound: 'Silent' | 'Sound';
   source: string;
   videoUrl: string;
-  thumbnailUrl: string;
+  posterUrl: string;   // Vertical (2:3) for Library
+  backdropUrl: string; // Horizontal (16:9) for Player/Hero
   description: string;
   language: string;
   subtitles: { lang: string; url: string; code: string }[];

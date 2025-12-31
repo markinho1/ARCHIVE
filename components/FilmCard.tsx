@@ -12,7 +12,7 @@ const FilmCard: React.FC<Props> = ({ film }) => {
     <Link to={`/watch/${film.id}`} className="group relative block film-card-hover overflow-hidden rounded-sm">
       <div className="aspect-[2/3] w-full overflow-hidden bg-neutral-900">
         <img
-          src={film.thumbnailUrl}
+          src={film.posterUrl}
           alt={film.title}
           className="h-full w-full object-cover transition duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100"
           loading="lazy"

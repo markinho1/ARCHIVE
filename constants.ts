@@ -15,7 +15,10 @@ export const FILMS: Film[] = [
     sound: 'Sound',
     source: 'Internet Archive (livingDead_4k)',
     videoUrl: 'https://archive.org/download/livingDead_4k/livingDead_4k.mp4',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=2000&auto=format&fit=crop',
+    // Updated to User provided TMDB link
+    posterUrl: 'https://image.tmdb.org/t/p/original/iLgyayS7fl6FrWDq7htq8K13WuI.jpg', 
+    // Iconic still from the film (Karen Cooper) - 16:9
+    backdropUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Night_of_the_Living_Dead_-_Karen_Cooper_2.jpg/1280px-Night_of_the_Living_Dead_-_Karen_Cooper_2.jpg',
     description: 'The definitive masterpiece of modern horror. George A. Romero’s social commentary disguised as a zombie thriller changed cinema forever. A ragtag group of survivors barricade themselves in a farmhouse as the dead begin to walk.',
     language: 'English',
     subtitles: [
@@ -26,45 +29,53 @@ export const FILMS: Film[] = [
     ]
   },
   {
-    id: 'metropolis-1927',
-    title: 'Metropolis',
-    year: 1927,
-    director: 'Fritz Lang',
-    country: 'Germany',
-    runtime: '153 min',
-    genres: ['Sci-Fi', 'Drama'],
+    id: 'brain-wouldnt-die-1962',
+    title: 'The Brain That Wouldn\'t Die',
+    year: 1962,
+    director: 'Joseph Green',
+    country: 'USA',
+    runtime: '82 min',
+    genres: ['Horror', 'Sci-Fi'],
     type: 'Narrative',
     color: 'B&W',
-    sound: 'Silent',
-    source: 'Internet Archive / Murnau Stiftung',
-    // High-resolution direct link
-    videoUrl: 'https://archive.org/download/Metropolis1927_201509/Metropolis1927_201509.mp4',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2000&auto=format&fit=crop',
-    description: 'In a futuristic city sharply divided between the working class and the city planners, the son of the city\'s mastermind falls in love with a working-class prophet who predicts the coming of a savior.',
-    language: 'German (Intertitles)',
+    sound: 'Sound',
+    source: 'Internet Archive (brain-wouldnt-die-4-k)',
+    videoUrl: 'https://dn720302.ca.archive.org/0/items/brain-wouldnt-die-4-k/BrainWouldntDie_4K.ia.mp4',
+    // User provided poster
+    posterUrl: 'https://m.media-amazon.com/images/M/MV5BNTZlZDMwZTYtMTg4ZS00MmQ4LWEzYWItZWQwYjFkMTBmMjgzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
+    // Title Card / Laboratory Scene - 16:9
+    backdropUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/The_Brain_That_Wouldn%27t_Die_1962.jpg/1280px-The_Brain_That_Wouldn%27t_Die_1962.jpg',
+    description: 'A brilliant but unorthodox surgeon revives the severed head of his fiancée after a car accident. While he hunts for a new body to attach it to, the head begins to telepathically control a mutant creature locked in his laboratory.',
+    language: 'English',
     subtitles: [
       { lang: 'English', url: '#', code: 'EN' },
       { lang: 'Portuguese', url: '#', code: 'PT' }
     ]
   },
   {
-    id: 'nosferatu-1922',
-    title: 'Nosferatu',
-    year: 1922,
-    director: 'F.W. Murnau',
-    country: 'Germany',
-    runtime: '94 min',
-    genres: ['Horror', 'Fantasy'],
+    id: 'last-man-on-earth-1964',
+    title: 'The Last Man on Earth',
+    year: 1964,
+    director: 'Ubaldo Ragona',
+    country: 'Italy / USA',
+    runtime: '86 min',
+    genres: ['Horror', 'Sci-Fi'],
     type: 'Narrative',
     color: 'B&W',
-    sound: 'Silent',
-    source: 'Public Domain / Archive.org',
-    // Correct direct file link
-    videoUrl: 'https://archive.org/download/Nosferatu_1922_Silent_Movie/Nosferatu_1922_Silent_Movie.mp4',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2000&auto=format&fit=crop',
-    description: 'Vampire Count Orlok expresses interest in a new residence and real estate agent Hutter\'s wife.',
-    language: 'German (Intertitles)',
-    subtitles: [{ lang: 'English', url: '#', code: 'EN' }]
+    sound: 'Sound',
+    source: 'Internet Archive (last-man-on-earth-4-k)',
+    videoUrl: 'https://dn720401.ca.archive.org/0/items/last-man-on-earth-4-k/LastManOnEarth4K.ia.mp4',
+    // Updated to user provided BW stylized poster
+    posterUrl: 'https://m.media-amazon.com/images/M/MV5BMWE4MTFmYmUtMTY5MS00ZDJhLWJlM2MtYjU5Y2QyZjJiNTM3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
+    // Vincent Price Scene - 16:9
+    backdropUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/The_Last_Man_on_Earth_%281964%29_-_Vincent_Price_2.jpg/1280px-The_Last_Man_on_Earth_%281964%29_-_Vincent_Price_2.jpg',
+    description: 'Dr. Robert Morgan is the only survivor of a devastating global plague that has turned the rest of humanity into vampiric creatures. By day he hunts them; by night he barricades himself in his home. A chilling adaptation of Richard Matheson\'s "I Am Legend".',
+    language: 'English',
+    subtitles: [
+      { lang: 'English', url: '#', code: 'EN' },
+      { lang: 'Spanish', url: '#', code: 'ES' },
+      { lang: 'Italian', url: '#', code: 'IT' }
+    ]
   }
 ];
 

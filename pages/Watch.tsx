@@ -31,17 +31,17 @@ const Watch: React.FC = () => {
 
   const togglePlay = () => {
     if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
+      if (videoRef.current.paused) {
         const playPromise = videoRef.current.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
             // Auto-play might be blocked, UI stays in paused state
           });
         }
+      } else {
+        videoRef.current.pause();
       }
-      setIsPlaying(!isPlaying);
+      // State updates are handled by onPlay/onPause event listeners
     }
   };
 
@@ -67,6 +67,11 @@ const Watch: React.FC = () => {
 
   const handlePlaying = () => {
     setIsLoading(false);
+    setIsPlaying(true);
+  };
+
+  const handlePause = () => {
+    setIsPlaying(false);
   };
 
   const handleError = () => {
@@ -178,14 +183,16 @@ const Watch: React.FC = () => {
               onLoadedMetadata={handleLoadedMetadata}
               onWaiting={handleWaiting}
               onPlaying={handlePlaying}
+              onPause={handlePause}
               onCanPlay={handleCanPlay}
               onError={handleError}
-              onEnded={() => setShowEndScreen(true)}
+              onEnded={() => { setShowEndScreen(true); setIsPlaying(false); }}
               onClick={togglePlay}
-              poster={film.thumbnailUrl}
+              poster={film.backdropUrl}
               src={film.videoUrl}
-              preload="metadata"
+              preload="auto"
               playsInline
+              autoPlay
             />
 
             {/* Custom Subtitles */}
@@ -203,7 +210,17 @@ const Watch: React.FC = () => {
               <div className="p-8 bg-gradient-to-t from-black/95 via-black/40 to-transparent backdrop-blur-[1px]">
                 
                 {/* Progress Bar */}
-                <div className="relative group/progress mb-8">
+                <div className="relative group/progress mb-8 h-2 flex items-center cursor-pointer">
+                  {/* Custom Background Track */}
+                  <div className="absolute inset-x-0 h-1 bg-white/20 rounded-full pointer-events-none" />
+                  
+                  {/* Custom Fill Track */}
+                  <div 
+                    className="absolute left-0 h-1 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,0.8)] pointer-events-none transition-all z-10" 
+                    style={{ width: `${(currentTime / (duration || 1)) * 100}%` }}
+                  />
+
+                  {/* Range Input - Transparent Track, Visible Thumb */}
                   <input
                     type="range"
                     min="0"
@@ -211,11 +228,7 @@ const Watch: React.FC = () => {
                     step="0.1"
                     value={currentTime}
                     onChange={handleSeek}
-                    className="w-full h-2 accent-white cursor-pointer relative z-10 appearance-none bg-transparent"
-                  />
-                  <div 
-                    className="absolute top-[9px] left-0 h-1 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,0.8)] pointer-events-none transition-all" 
-                    style={{ width: `${(currentTime / (duration || 1)) * 100}%` }}
+                    className="w-full h-full appearance-none bg-transparent absolute inset-0 z-20 cursor-pointer [&::-webkit-slider-runnable-track]:bg-transparent focus:outline-none"
                   />
                 </div>
 
@@ -258,7 +271,7 @@ const Watch: React.FC = () => {
                         title="Settings"
                       >
                         <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24">
-                          <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.91,7.62,6.29L5.23,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.72,8.87 c-0.11,0.21-0.06,0.47,0.12,0.61l2.03,1.58C4.84,11.36,4.81,11.68,4.81,12c0,0.32,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
+                          <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.91,7.62,6.29L5.23,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.72,8.87 c-0.11,0.21-0.06,0.47,0.12,0.61l2.03,1.58C4.84,11.36,4.81,11.68,4.81,12c0,0.32,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12,0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
                         </svg>
                       </button>
                       
