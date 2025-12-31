@@ -1,0 +1,8 @@
+{
+  "name": "Archive Cinema",
+  "description": "A non-profit, ad-free streaming platform dedicated to preserving and sharing public domain films from around the world.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
