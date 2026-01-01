@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archive Cinema | Preserving Global Heritage</title>
+    <title>Lume Cinema | Preservando o Patrimônio Global</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -66,7 +65,9 @@
         "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
         "react-router-dom": "https://esm.sh/react-router-dom@6.26.1?deps=react@18.3.1,react-dom@18.3.1",
         "react/": "https://esm.sh/react@18.3.1/",
-        "react-dom/": "https://esm.sh/react-dom@18.3.1/"
+        "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+        "react-qr-code": "https://esm.sh/react-qr-code@2.0.12?deps=react@18.3.1",
+        "react-hot-toast": "https://esm.sh/react-hot-toast@2.4.1?deps=react@18.3.1,react-dom@18.3.1"
       }
     }
     </script>
@@ -77,12 +78,12 @@
         if (root && root.innerText.includes('Loading')) {
           root.innerHTML = `
             <div style="padding: 40px; text-align: center; color: #ef4444;">
-              <h2 style="font-family: serif; font-size: 24px; margin-bottom: 16px;">System Error</h2>
+              <h2 style="font-family: serif; font-size: 24px; margin-bottom: 16px;">Erro do Sistema</h2>
               <p style="color: #a3a3a3; font-family: monospace; font-size: 12px; background: #171717; padding: 20px; border-radius: 8px; display: inline-block;">
                 ${event.message}
               </p>
               <p style="margin-top: 20px; color: #737373; font-size: 14px;">
-                If you are viewing this on GitHub Pages, ensure you have run a build step (e.g. 'npm run build') and are serving the 'dist' folder, rather than the source code.
+                Se você está visualizando isso no GitHub Pages, certifique-se de ter executado uma etapa de build (ex: 'npm run build') e estar servindo a pasta 'dist', em vez do código fonte.
               </p>
             </div>
           `;
@@ -94,7 +95,7 @@
     <div id="root">
       <!-- Initial Loading State -->
       <div style="height: 100vh; display: flex; align-items: center; justify-content: center; color: #404040; font-family: serif; letter-spacing: 0.2em; text-transform: uppercase; font-size: 12px;">
-        Loading Archive Cinema...
+        Carregando Lume Cinema...
       </div>
     </div>
     <script type="module" src="index.tsx"></script>

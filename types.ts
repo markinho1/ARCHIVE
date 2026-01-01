@@ -1,4 +1,13 @@
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: 'admin' | 'member' | 'subscriber';
+  avatar?: string;
+  joinedAt: string;
+}
+
 export interface Film {
   id: string;
   title: string;
@@ -7,9 +16,9 @@ export interface Film {
   country: string;
   runtime: string;
   genres: string[];
-  type: 'Narrative' | 'Documentary' | 'Experimental';
-  color: 'B&W' | 'Color';
-  sound: 'Silent' | 'Sound';
+  type: 'Narrativa' | 'Documentário' | 'Experimental';
+  color: 'Preto & Branco' | 'Cor';
+  sound: 'Mudo' | 'Som';
   source: string;
   videoUrl: string;
   posterUrl: string;   // Vertical (2:3) for Library
@@ -17,6 +26,7 @@ export interface Film {
   description: string;
   language: string;
   subtitles: { lang: string; url: string; code: string }[];
+  isRestricted?: boolean; // New: If true, requires login/membership
 }
 
 export interface DonationGoal {
